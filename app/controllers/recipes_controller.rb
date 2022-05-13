@@ -11,6 +11,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def create
         recipe = Recipe.create(recipe_params)
         if recipe.valid?
+        UserRecipe.create(recipe_id: recipe[:id])
         render json: recipe, status: :created
         else
             render json: {errors: recipe.errors}, status: :unprocessable_entity
@@ -22,6 +23,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         recipe.update(recipe_params)
         render json: recipe, status: :accepted
     end
+
+    def destroy
+        recipe = Recipe.find(params[:id])
+        recipe.destroy, dependents
 
 
     private
