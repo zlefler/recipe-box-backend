@@ -10,18 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_12_202102) do
-  create_table "comments", force: :cascade do |t|
-    t.string "comment"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema[7.0].define(version: 2022_05_12_212125) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "recipes", force: :cascade do |t|
-    t.string "recipe"
+    t.string "name"
+    t.text "instructions"
     t.integer "time_to_make"
     t.boolean "vegetarian"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_recipes", force: :cascade do |t|
@@ -34,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_202102) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
