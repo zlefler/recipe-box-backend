@@ -692,3 +692,191 @@ Processing by RecipesController#show as HTML
 Completed 404 Not Found in 9ms (Views: 0.2ms | ActiveRecord: 2.9ms | Allocations: 3158)
 
 
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 17:59:39 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 17:59:39 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 18:00:08 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 18:00:08 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 18:00:25 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-12 18:00:25 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started OPTIONS "/recipes" for ::1 at 2022-05-12 18:05:16 -0700
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/recipes"):
+  
+Started OPTIONS "/recipes" for ::1 at 2022-05-12 18:05:22 -0700
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/recipes"):
+  
+Started OPTIONS "/recipes" for ::1 at 2022-05-12 18:05:22 -0700
+  
+ActionController::RoutingError (No route matches [OPTIONS] "/recipes"):
+  
+Started GET "/recipes" for ::1 at 2022-05-12 18:07:41 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (40.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for ::1 at 2022-05-12 18:07:45 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for ::1 at 2022-05-12 18:07:45 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+...efore_action :authorize, only [:index]
+...                              ^
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:4: syntax error, unexpected [, expecting `do' or '{' or '('
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for ::1 at 2022-05-12 18:08:21 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for ::1 at 2022-05-12 18:08:21 -0700
+  
+SyntaxError (/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+/Users/zachlefler/Development/code/phase-4/recipe-box-backend/app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/recipes_controller.rb:32: syntax error, unexpected '\n', expecting '='
+app/controllers/recipes_controller.rb:49: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/recipes" for ::1 at 2022-05-12 18:08:51 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+Completed 200 OK in 34ms (Views: 8.3ms | ActiveRecord: 4.2ms | Allocations: 24486)
+
+
+Started GET "/recipes" for ::1 at 2022-05-12 18:08:51 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 1132)
+
+
+Started GET "/recipes" for ::1 at 2022-05-12 18:10:48 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+Completed 200 OK in 30ms (Views: 7.8ms | ActiveRecord: 4.3ms | Allocations: 24487)
+
+
+Started GET "/recipes" for ::1 at 2022-05-12 18:10:48 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.3ms | Allocations: 1133)
+
+

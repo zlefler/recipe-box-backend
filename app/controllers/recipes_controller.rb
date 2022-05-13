@@ -1,5 +1,8 @@
 class RecipesController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
+before_action :authorize
+skip_before_action :authorize, only: [:index]
+
     def index
         render json: Recipe.all
     end
@@ -26,10 +29,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def destroy
         recipe = Recipe.find(params[:id])
-        recipe.destroy, dependents
+        recipe.destroy
+    end
 
 
     private
+
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    end
+
     def recipe_params
         params.permit(:name, :instructions, :time_to_make, :vegetarian)
     end
