@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
 before_action :authorize
-skip_before_action :authorize, only: [:index]
+skip_before_action :authorize, only: [:index, :show]
 
     def index
         render json: Recipe.all

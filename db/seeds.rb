@@ -1,5 +1,5 @@
-User.create(name: 'Zach', password: '1234')
-User.create(name: 'Maya', password: 'qwerty')
+User.create(username: 'Zach', password: '1234')
+User.create(username: 'Maya', password: 'qwerty')
 
 Recipe.create(name: 'Cubano', instructions: 'Mix the mayonnaise and mustard in a small bowl and spread evenly on the inside of the bread slices. Layer on half of the cheese, the ham, pork, Quick Garlic Pickles and the remaining cheese. Cover with another slice of bread and butter the outside (top and bottom) of the sandwich.
 Heat a cast-iron skillet to medium-high heat and place the sandwiches in the pan. Top with a second cast-iron skillet to weigh the sandwiches down. After 2 minutes, turn down the heat to medium low, flip the sandwiches and weigh down again with the second skillet. Check the sandwiches after 1 more minute, and remove when golden brown and the cheese has melted.', time_to_make: '30', vegetarian: false)
