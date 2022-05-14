@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   delete "/logout", to: "sessions#destroy"
   post '/signup', to: 'users#create'
+  post 'save_recipe', to: 'user_recipes#create'
 end
