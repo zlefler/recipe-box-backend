@@ -6,10 +6,16 @@ class UserRecipesController < ApplicationController
     end
 
     def user_index
-        user = User.find(params[:user_id])
+        user = User.find_by(id: session[:user_id])
         render json: user.recipes, status: :ok
     end
 
+    def destroy
+        byebug
+        user = User.find_by(id: session[:user_id])
+        recipe = user.user_recipes.find(params[:id])
+        render json: recipe.destroy
+    end
 
 
 end

@@ -23,7 +23,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
             vegetarian: params[:vegetarian])
         
         # if recipe.valid?
-        UserRecipe.create(recipe_id: recipe[:id])
+        user_id = params[:user_id]
+        UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
         render json: recipe, status: :created
         # else
         #     render json: {errors: recipe.errors}, status: :unprocessable_entity

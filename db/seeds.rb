@@ -1,4 +1,5 @@
-User.create(username: 'Zach', password: '1234')
+User.create(username: 'admin', password: '1234')
+User.create(username: 'Zach', password: 'asdf')
 User.create(username: 'Maya', password: 'qwerty')
 
 Recipe.create(name: 'Cubano', instructions: 'Mix the mayonnaise and mustard in a small bowl and spread evenly on the inside of the bread slices. Layer on half of the cheese, the ham, pork, Quick Garlic Pickles and the remaining cheese. Cover with another slice of bread and butter the outside (top and bottom) of the sandwich.
@@ -28,7 +29,7 @@ Recipe.create(name: 'Macaroni Salad', instructions: "Cook the macaroni in lightl
     Place the cooled macaroni in a large bowl and pour in 3/4 of the dressing. Toss and add more dressing if you'd like. (The dressing will seem a little thin, but it will thicken up as the salad chills.)
     Stir in the roasted red peppers (or pimentos), olives, pickles, and green onions. Add more of any ingredient if you'd like more stuff going on! At the end, splash in a little more pickle juice and stir.
     Chill for at least 2 hours before serving. Sprinkle with sliced green onions to serve!", time_to_make: 25, vegetarian: true)
-UserRecipe.create(user_id: 1, recipe_id: 1)
-UserRecipe.create(user_id: 1, recipe_id: 2)
-UserRecipe.create(user_id: 2, recipe_id: 3)
-UserRecipe.create(user_id: 2, recipe_id: 4)
+UserRecipe.create(user_id: 2, recipe_id: 1)
+UserRecipe.create(user_id: 2, recipe_id: 2)
+UserRecipe.create(user_id: 3, recipe_id: 3)
+UserRecipe.create(user_id: 3, recipe_id: 4)
