@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
   # TO DO: Remove unnecessary routes 
   resources :user_recipes
-  resources :recipes
-  resources :users
+  resources :recipes 
+  resources :users do 
+    resources :recipes, only: [:index]
+  end
   post '/login', to: 'sessions#create'
   get '/me', to: 'users#show'
   delete "/logout", to: "sessions#destroy"
   post '/signup', to: 'users#create'
-  post 'save_recipe', to: 'user_recipes#create'
+  post '/save_recipe', to: 'user_recipes#create'
+  post '/user_recipes', to: 'user_recipes#user_index'
 end

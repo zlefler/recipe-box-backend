@@ -1,10 +1,14 @@
 class RecipesController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
-before_action :authorize
-skip_before_action :authorize, only: [:index, :show]
+# before_action :authorize
+# skip_before_action :authorize, only: [:index, :show]
 
     def index
-        render json: Recipe.all
+        if params[:user_id] && user = User.find(params[:user_id])
+            render json: user.recipes, status: :ok
+        else
+            render json: Recipe.all, status: :ok
+        end
     end
 
     def show
