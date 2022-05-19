@@ -5,10 +5,8 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def index
         if params[:user_id] && user = User.find(params[:user_id])
-            logger.info('yes user')
             render json: user.recipes, status: :ok
         else
-            logger.info('no user')
             render json: Recipe.all, status: :ok
         end
     end
@@ -42,10 +40,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def destroy
         user = User.find(session[:user_id])
         if user.id == 1
+            byebug
             recipe = Recipe.find(params[:id])
             recipe.destroy
         else
-            
             recipe = user.user_recipes.find_by(recipe_id: params[:id])
             render json: recipe.destroy
         end
