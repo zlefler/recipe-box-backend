@@ -9,12 +9,4 @@ class UserRecipesController < ApplicationController
         user = User.find(params[:user_id])
         render json: user.recipes, status: :ok
     end
-
-    def destroy
-        user = User.find(session[:user_id])
-        recipe = user.user_recipes.find_by(recipe_id: params[:id])
-        render json: recipe.destroy
-    end
-
-
 end

@@ -40,8 +40,15 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     end
 
     def destroy
-        recipe = Recipe.find(params[:id])
-        recipe.destroy
+        user = User.find(session[:user_id])
+        if user.id == 1
+            recipe = Recipe.find(params[:id])
+            recipe.destroy
+        else
+            
+            recipe = user.user_recipes.find_by(recipe_id: params[:id])
+            render json: recipe.destroy
+        end
     end
 
 
