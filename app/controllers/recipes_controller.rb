@@ -5,8 +5,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def index
         if params[:user_id] && user = User.find(params[:user_id])
+            logger.info('yes user')
             render json: user.recipes, status: :ok
         else
+            logger.info('no user')
             render json: Recipe.all, status: :ok
         end
     end
@@ -23,7 +25,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
             vegetarian: params[:vegetarian])
         
         # if recipe.valid?
-        user_id = params[:user_id]
+        user_id = session[:user_id]
         UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
         render json: recipe, status: :created
         # else
