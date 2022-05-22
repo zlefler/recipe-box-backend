@@ -17147,3 +17147,155 @@ Processing by RecipesController#index as */*
 Completed 200 OK in 82ms (Views: 53.0ms | ActiveRecord: 2.2ms | Allocations: 702264)
 
 
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:15:45 -0700
+Started GET "/me" for 127.0.0.1 at 2022-05-22 10:15:45 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (26.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#index as */*
+Processing by UsersController#show as */*
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 43ms (Views: 10.0ms | ActiveRecord: 5.5ms | Allocations: 27786)
+
+
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 63ms (Views: 0.6ms | ActiveRecord: 20.8ms | Allocations: 33718)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:15:45 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.5ms | Allocations: 1133)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:15:54 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 39ms (Views: 13.0ms | ActiveRecord: 2.0ms | Allocations: 12223)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:15:54 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.9ms | Allocations: 1595)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:15:55 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.5ms | Allocations: 1051)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:16:02 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 4.2ms | ActiveRecord: 1.1ms | Allocations: 1614)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:16:02 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 1.1ms | Allocations: 1596)
+
+
+Started PATCH "/recipes/2" for 127.0.0.1 at 2022-05-22 10:16:18 -0700
+Processing by RecipesController#update as */*
+  Parameters: {"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"40", "vegetarian"=>true, "id"=>"2", "recipe"=>{"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"40", "vegetarian"=>true}}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:35:in `update'
+[31mUnpermitted parameters: :id, :recipe. Context: { controller: RecipesController, action: update, request: #<ActionDispatch::Request:0x00007f89cff0c2c8>, params: {"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"40", "vegetarian"=>true, "controller"=>"recipes", "action"=>"update", "id"=>"2", "recipe"=>{"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"40", "vegetarian"=>true}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:36:in `update'
+  [1m[36mRecipe Update (0.5ms)[0m  [1m[33mUPDATE "recipes" SET "time_to_make" = $1, "updated_at" = $2 WHERE "recipes"."id" = $3[0m  [["time_to_make", 40], ["updated_at", "2022-05-22 17:16:18.319528"], ["id", 2]]
+  ↳ app/controllers/recipes_controller.rb:36:in `update'
+  [1m[36mTRANSACTION (40.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:36:in `update'
+Completed 202 Accepted in 51ms (Views: 0.7ms | ActiveRecord: 41.7ms | Allocations: 2759)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:16:24 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.4ms | Allocations: 1053)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:16:31 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 1.4ms | Allocations: 1598)
+
+
+Started GET "/users/2/recipes" for 127.0.0.1 at 2022-05-22 10:16:31 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "user_recipes" ON "recipes"."id" = "user_recipes"."recipe_id" WHERE "user_recipes"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 3.7ms | ActiveRecord: 1.0ms | Allocations: 1596)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:16:32 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.5ms | Allocations: 1053)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2022-05-22 10:16:36 -0700
+Processing by SessionsController#destroy as */*
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 187)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:16:36 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.6ms | Allocations: 1053)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:16:44 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.5ms | Allocations: 1053)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-05-22 10:16:48 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"Zach", "password"=>"[FILTERED]", "session"=>{"username"=>"Zach", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Zach"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 201 Created in 239ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 885)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-22 10:16:48 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 1053)
+
+

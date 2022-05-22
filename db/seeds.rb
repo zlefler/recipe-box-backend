@@ -9,7 +9,7 @@ Recipe.create(name: 'Spanish Rice Fritatta', instructions: 'Chop onion and peppe
     Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.
     Stir salsa into egg mixture along with milk, garlic salt and pepper.
     Grate cheese and blend into eggs and vegetables along with instant rice.
-    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).', time_to_make: 30, vegetarian: true)
+    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).', time_to_make: 35, vegetarian: true)
 Recipe.create(name: 'Buttermilk-fried Chicken', instructions: 'Combine the paprika, black pepper, garlic powder, oregano, and cayenne in a small bowl and mix thoroughly with a fork.
 
     Whisk the buttermilk, egg, 1 tablespoon salt, and 2 tablespoons of the spice mixture in a large bowl. Add the chicken pieces and toss and turn to coat. Transfer the contents of the bowl to a gallon-sized zipper-lock freezer bag and refrigerate for at least 4 hours, and up to overnight, flipping the bag occasionally to redistribute the contents and coat the chicken evenly.
