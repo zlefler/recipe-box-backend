@@ -1,0 +1,72 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center; 
+  background-color: #F9EBC8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.recipe-name {
+  width: 15%;
+}
+.recipe-time {
+  width: 5%;
+}
+
+.card {
+  width: 25%;
+  margin: 2%;
+  display: inline-block;
+  background-color: #FEFBE7;
+}
+
+.logout-button {
+  float: right;
+}
+
+.greeting {
+  text-align: center;
+}
+
+.login {
+  width: 15%
+}
+
+.signup {
+  width: 15%
+}
+
+.navbar-div {
+  background-color: #FEFBE7;
+}
+
+/* .recipe-div {
+  background-color: #F9EBC8;
+} */
+
+.card-button {
+  margin: .2rem;
+  width: 8rem;
+}
+
+/* .signup-div {
+  background-color: #F9EBC8;
+} */
+
+.body {
+  background-color: #F9EBC8;
+}
