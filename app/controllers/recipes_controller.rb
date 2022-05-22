@@ -22,13 +22,13 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
             time_to_make:params[:time_to_make],
             vegetarian: params[:vegetarian])
         
-        # if recipe.valid?
+        if recipe.valid?
         user_id = session[:user_id]
         UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
         render json: recipe, status: :created
-        # else
-        #     render json: {errors: recipe.errors}, status: :unprocessable_entity
-        # end
+        else
+            render json: {errors: recipe.errors}, status: :unprocessable_entity
+        end
     end
 
     def update
@@ -40,7 +40,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def destroy
         user = User.find(session[:user_id])
         if user.id == 1
-            byebug
             recipe = Recipe.find(params[:id])
             recipe.destroy
         else
@@ -56,9 +55,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 
-    # def recipe_params
-    #     params.permit(:name, :instructions, :time_to_make, :vegetarian)
-    # end
+    def recipe_params
+        params.permit(:name, :instructions, :time_to_make, :vegetarian)
+    end
 
     def not_found
         render json: {error: 'No recipe with that id'}, status: :not_found
