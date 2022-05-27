@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  # TO DO: Remove unnecessary routes 
   resources :recipes 
   resources :users do 
     resources :recipes, only: [:index, :destroy]

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
-# before_action :authorize
-# skip_before_action :authorize, only: [:index, :show]
+before_action :authorize
+skip_before_action :authorize, only: [:index, :show]
 
     def index
         if params[:user_id] && user = User.find(params[:user_id])
@@ -16,16 +16,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     end
 
     def create
-        recipe = Recipe.create(
-            name: params[:name],
-            instructions:params[:instructions],
-            time_to_make:params[:time_to_make],
-            vegetarian: params[:vegetarian])
+        recipe = Recipe.create(recipe_params)
         
         if recipe.valid?
-        user_id = session[:user_id]
-        UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
-        render json: recipe, status: :created
+            user_id = session[:user_id]
+            UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
+            render json: recipe, status: :created
         else
             render json: {errors: recipe.errors}, status: :unprocessable_entity
         end
@@ -43,9 +39,14 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
             recipe = Recipe.find(params[:id])
             recipe.destroy
         else
-            recipe = user.user_recipes.find_by(recipe_id: params[:id])
-            render json: recipe.destroy
+            user_recipe = user.user_recipes.find_by(recipe_id: params[:id])
+            render json: user_recipe.destroy
         end
+    end
+
+    def favorites
+        byebug
+        render json: Recipe.first
     end
 
 
