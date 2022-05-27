@@ -19,11 +19,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_212125) do
     t.text "instructions"
     t.integer "time_to_make"
     t.boolean "vegetarian"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_recipes", force: :cascade do |t|
+  create_table "saved_recipes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "recipe_id"
     t.datetime "created_at", null: false

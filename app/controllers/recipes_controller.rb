@@ -5,7 +5,7 @@ skip_before_action :authorize, only: [:index, :show]
 
     def index
         if params[:user_id] && user = User.find(params[:user_id])
-            render json: user.recipes, status: :ok
+            render json: user.saved_recipes, status: :ok
         else
             render json: Recipe.all, status: :ok
         end

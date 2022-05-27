@@ -1,8 +1,8 @@
-class UserRecipesController < ApplicationController
+class SavedRecipesController < ApplicationController
 
     def create
         # TO DO: make sure you can't create duplicate recipes associations
-       render json: UserRecipe.create(user_id: params[:user_id], recipe_id: params[:recipe_id]), status: :created
+       render json: SavedRecipe.create(user_id: params[:user_id], recipe_id: params[:recipe_id]), status: :created
     end
 
     def user_index
