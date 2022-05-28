@@ -2,10 +2,11 @@ class BookmarksController < ApplicationController
 
     def create
         # TO DO: make sure you can't create duplicate recipes associations
-        # Bookmark.find(bookmark_params)
-        #     render json: {error: 'Recipe already bookmarked'}, status: :unprocessable_entity
-        # rescue RecordNotFound
+        if Bookmark.find_by(bookmark_params)
+            render json: {error: 'Recipe already bookmarked'}, status: :unprocessable_entity
+        else
             render json: Bookmark.create(bookmark_params), status: :created
+        end
     end
 
     def show

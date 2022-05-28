@@ -22,16 +22,6 @@ function RecipeList({ user }) {
     }
   }, [user, location.pathname]);
 
-  function handleSaveRecipe(user, recipe) {
-    fetch('/bookmarks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: user.id, recipe_id: recipe.id }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }
-
   function handleDeleteRecipe(recipe_id) {
     fetch(`/recipes/${recipe_id}`, {
       method: 'DELETE',
@@ -76,7 +66,6 @@ function RecipeList({ user }) {
           key={recipe.id}
           user={user}
           recipe={recipe}
-          handleSaveRecipe={handleSaveRecipe}
           handleUnsaveRecipe={handleUnsaveRecipe}
           handleDeleteRecipe={handleDeleteRecipe}
           handleEditRecipe={handleEditRecipe}

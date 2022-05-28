@@ -7,11 +7,28 @@ function RecipeCard({
   user,
   handleUnsaveRecipe,
   handleDeleteRecipe,
-  handleSaveRecipe,
   handleEditRecipe,
 }) {
   const location = useLocation();
   const [fullRecipe, setFullRecipe] = useState(false);
+  const [saveResponse, setSaveResponse] = useState('');
+
+  function handleSaveRecipe(user, recipe) {
+    fetch('/bookmarks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, recipe_id: recipe.id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data['error']) {
+          setSaveResponse('Already saved!');
+        } else {
+          setSaveResponse('Saved!');
+        }
+      });
+  }
+
   return (
     <Card className="card">
       <h1>{recipe.name}</h1>
@@ -30,12 +47,15 @@ function RecipeCard({
       </Button>
       {/* if logged in, on the homepage */}
       {user && location.pathname !== '/userpage' && (
-        <Button
-          className="card-button"
-          onClick={() => handleSaveRecipe(user, recipe)}
-        >
-          Save Recipe
-        </Button>
+        <>
+          <Button
+            className="card-button"
+            onClick={() => handleSaveRecipe(user, recipe)}
+          >
+            Save Recipe
+          </Button>
+          <p>{saveResponse}</p>
+        </>
       )}
       {/* if on the user page */}
       {location.pathname === '/userpage' && (
