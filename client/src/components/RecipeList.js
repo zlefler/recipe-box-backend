@@ -27,7 +27,9 @@ function RecipeList({ user }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: user.id, recipe_id: recipe.id }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
 
   function handleDeleteRecipe(recipe_id) {
@@ -38,7 +40,7 @@ function RecipeList({ user }) {
   }
 
   function handleUnsaveRecipe(recipe_id) {
-    fetch(`/users/${user.id}/recipes/${recipe_id}`, {
+    fetch(`/users/${user.id}/bookmarks/${recipe_id}`, {
       method: 'DELETE',
     });
     setRecipes(recipes.filter((recipe) => recipe.id !== recipe_id));

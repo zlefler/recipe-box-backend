@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :bookmarks
   resources :users do 
     resources :recipes, only: [:index, :destroy]
-    # resources :saved_recipes, only: [:index, :destroy]
+    resources :bookmarks, only: [:index, :destroy]
   end
   post '/login', to: 'sessions#create'
   get '/me', to: 'users#show'

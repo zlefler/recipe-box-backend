@@ -12,7 +12,6 @@ function RecipeCard({
 }) {
   const location = useLocation();
   const [fullRecipe, setFullRecipe] = useState(false);
-  console.log(recipe);
   return (
     <Card className="card">
       <h1>{recipe.name}</h1>
