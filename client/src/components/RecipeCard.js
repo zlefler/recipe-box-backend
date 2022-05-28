@@ -46,7 +46,7 @@ function RecipeCard({
         {fullRecipe ? 'Hide Recipe' : 'See Full Recipe'}
       </Button>
       {/* if logged in, on the homepage */}
-      {user && location.pathname !== '/userpage' && (
+      {user && location.pathname !== '/userpage' && recipe.user_id !== user.id && (
         <>
           <Button
             className="card-button"
@@ -60,31 +60,34 @@ function RecipeCard({
       {/* if on the user page */}
       {location.pathname === '/userpage' && (
         <>
-          <Button
-            className="card-button"
-            type="primary"
-            onClick={() => handleEditRecipe(recipe)}
-          >
-            Edit Recipe
-          </Button>
-          <Button
-            className="card-button"
-            type="danger"
-            onClick={() => handleUnsaveRecipe(recipe.id)}
-          >
-            Unsave Recipe
-          </Button>
+          {recipe.user_id === user.id ? (
+            <>
+              <Button
+                className="card-button"
+                type="primary"
+                onClick={() => handleEditRecipe(recipe)}
+              >
+                Edit Recipe
+              </Button>
+              <Popconfirm
+                title="Permanently delete this recipe?"
+                okText="Yes"
+                cancelText="No"
+                onConfirm={() => handleDeleteRecipe(recipe.id)}
+              >
+                <Button type="danger">DELETE</Button>
+              </Popconfirm>
+            </>
+          ) : (
+            <Button
+              className="card-button"
+              type="danger"
+              onClick={() => handleUnsaveRecipe(recipe.id)}
+            >
+              Unsave Recipe
+            </Button>
+          )}
         </>
-      )}
-      {location.pathname === '/userpage' && recipe.user_id === user.id && (
-        <Popconfirm
-          title="Permanently delete this recipe?"
-          okText="Yes"
-          cancelText="No"
-          onConfirm={() => handleDeleteRecipe(recipe.id)}
-        >
-          <Button type="danger">DELETE</Button>
-        </Popconfirm>
       )}
     </Card>
   );
