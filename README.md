@@ -14,7 +14,7 @@ You can also use the deployed version of the app [here.](https://sheltered-beach
 To create the database from your computer, type `rails db:create db:migrate`. If you want to use the seed files, add `db:create` to the previous command.
 To start the server, type `rails s`. Then, in a separate terminal, type `npm start --prefix client`. This should automatically navigate you to http://localhost:3000 , where you can use the app.
 
-Usage of the app is fairly straightfoward: You can sign up for an account, create recipes, save other people's recipes. You can unsave recipes from your profile, but you cannot delete them from the database unless you are logged in as admin. If you do not use the seeds provided, the first account created will be assigned admin privileges.
+Usage of the app is fairly straightfoward: You can sign up for an account, create recipes, save other people's recipes. You can edit and delete your own recipes, but not others.
 
 ## Contributing
 

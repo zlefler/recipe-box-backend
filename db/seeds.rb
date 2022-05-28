@@ -1,3 +1,4 @@
+puts 'Seeding...'
 User.create(username: 'Zach', password: 'asdf')
 User.create(username: 'Maya', password: 'qwerty')
 
@@ -28,7 +29,8 @@ Recipe.create(name: 'Macaroni Salad', instructions: "Cook the macaroni in lightl
     Place the cooled macaroni in a large bowl and pour in 3/4 of the dressing. Toss and add more dressing if you'd like. (The dressing will seem a little thin, but it will thicken up as the salad chills.)
     Stir in the roasted red peppers (or pimentos), olives, pickles, and green onions. Add more of any ingredient if you'd like more stuff going on! At the end, splash in a little more pickle juice and stir.
     Chill for at least 2 hours before serving. Sprinkle with sliced green onions to serve!", time_to_make: 25, vegetarian: true, user_id: 2)
-SavedRecipe.create(user_id: 2, recipe_id: 1)
-SavedRecipe.create(user_id: 2, recipe_id: 2)
-SavedRecipe.create(user_id: 3, recipe_id: 3)
-SavedRecipe.create(user_id: 3, recipe_id: 4)
+Bookmark.create(user_id: 2, recipe_id: 1)
+Bookmark.create(user_id: 2, recipe_id: 2)
+Bookmark.create(user_id: 3, recipe_id: 3)
+Bookmark.create(user_id: 3, recipe_id: 4)
+puts 'Done!'

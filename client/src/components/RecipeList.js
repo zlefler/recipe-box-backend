@@ -23,7 +23,7 @@ function RecipeList({ user }) {
   }, [user, location.pathname]);
 
   function handleSaveRecipe(user, recipe) {
-    fetch('/save_recipe', {
+    fetch('/bookmarks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: user.id, recipe_id: recipe.id }),

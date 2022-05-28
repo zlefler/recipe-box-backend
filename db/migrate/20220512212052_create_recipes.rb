@@ -5,7 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.text :instructions
       t.integer :time_to_make
       t.boolean :vegetarian
-      t.integer :user_id
+      t.integer :user_id, null: false, foreign_key: true
       t.timestamps
     end
   end

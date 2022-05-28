@@ -5,7 +5,6 @@ import { useState } from 'react';
 function RecipeCard({
   recipe,
   user,
-  userpage,
   handleUnsaveRecipe,
   handleDeleteRecipe,
   handleSaveRecipe,
@@ -13,12 +12,10 @@ function RecipeCard({
 }) {
   const location = useLocation();
   const [fullRecipe, setFullRecipe] = useState(false);
-
+  console.log(recipe);
   return (
     <Card className="card">
-      {/* <a href={`http://localhost:3000/recipes/${recipe.id}`}> */}
       <h1>{recipe.name}</h1>
-      {/* </a> */}
       <h2>{recipe.time_to_make} minutes to make</h2>
       <h3>{recipe.vegetarian ? '' : 'NOT '}vegetarian</h3>
       {fullRecipe ? (
@@ -32,8 +29,8 @@ function RecipeCard({
       >
         {fullRecipe ? 'Hide Recipe' : 'See Full Recipe'}
       </Button>
-      {/* if logged in, on the homepage, but not admin */}
-      {user && location.pathname !== '/userpage' && user.id !== 1 && (
+      {/* if logged in, on the homepage */}
+      {user && location.pathname !== '/userpage' && (
         <Button
           className="card-button"
           onClick={() => handleSaveRecipe(user, recipe)}
@@ -60,16 +57,14 @@ function RecipeCard({
           </Button>
         </>
       )}
-      {/* if admin */}
-      {user && user.id === 1 && (
+      {location.pathname === '/userpage' && recipe.user_id === user.id && (
         <Popconfirm
           title="Permanently delete this recipe?"
           okText="Yes"
           cancelText="No"
+          onConfirm={() => handleDeleteRecipe(recipe.id)}
         >
-          <Button type="danger" onClick={() => handleDeleteRecipe(recipe.id)}>
-            DELETE
-          </Button>
+          <Button type="danger">DELETE</Button>
         </Popconfirm>
       )}
     </Card>

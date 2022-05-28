@@ -5,7 +5,7 @@ skip_before_action :authorize, only: [:index, :show]
 
     def index
         if params[:user_id] && user = User.find(params[:user_id])
-            render json: user.saved_recipes, status: :ok
+            render json: user.bookmarked_recipes, status: :ok
         else
             render json: Recipe.all, status: :ok
         end
@@ -20,7 +20,7 @@ skip_before_action :authorize, only: [:index, :show]
         
         if recipe.valid?
             user_id = session[:user_id]
-            UserRecipe.create(recipe_id: recipe[:id], user_id: user_id)
+            Bookmark.create(recipe_id: recipe[:id], user_id: user_id)
             render json: recipe, status: :created
         else
             render json: {errors: recipe.errors}, status: :unprocessable_entity
@@ -39,7 +39,7 @@ skip_before_action :authorize, only: [:index, :show]
             recipe = Recipe.find(params[:id])
             recipe.destroy
         else
-            user_recipe = user.user_recipes.find_by(recipe_id: params[:id])
+            user_recipe = user.recipe_saves.find_by(recipe_id: params[:id])
             render json: user_recipe.destroy
         end
     end
