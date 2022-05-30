@@ -23868,3 +23868,471 @@ Processing by RecipesController#index as */*
 Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.6ms | Allocations: 1607)
 
 
+Started PATCH "/recipes/6" for 127.0.0.1 at 2022-05-28 15:54:32 -0700
+Processing by RecipesController#update as */*
+  Parameters: {"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"30", "vegetarian"=>true, "id"=>"6", "recipe"=>{"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"30", "vegetarian"=>true}}
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:31:in `update'
+[31mUnpermitted parameters: :id, :recipe. Context: { controller: RecipesController, action: update, request: #<ActionDispatch::Request:0x00007fae1e418fd8>, params: {"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"30", "vegetarian"=>true, "controller"=>"recipes", "action"=>"update", "id"=>"6", "recipe"=>{"name"=>"Spanish Rice Fritatta", "instructions"=>"Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes).", "time_to_make"=>"30", "vegetarian"=>true}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `update'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:32:in `update'
+  [1m[36mRecipe Update (0.4ms)[0m  [1m[33mUPDATE "recipes" SET "time_to_make" = $1, "updated_at" = $2 WHERE "recipes"."id" = $3[0m  [["time_to_make", 30], ["updated_at", "2022-05-28 22:54:32.109063"], ["id", 6]]
+  ↳ app/controllers/recipes_controller.rb:32:in `update'
+  [1m[36mTRANSACTION (40.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `update'
+Completed 202 Accepted in 60ms (Views: 0.5ms | ActiveRecord: 48.7ms | Allocations: 9097)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-28 15:54:38 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.6ms | Allocations: 1178)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 15:54:39 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 22ms (Views: 5.6ms | ActiveRecord: 1.5ms | Allocations: 4209)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 15:54:39 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 20ms (Views: 4.3ms | ActiveRecord: 1.2ms | Allocations: 1607)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-28 15:54:47 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.9ms | Allocations: 1176)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 15:55:00 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 23ms (Views: 3.0ms | ActiveRecord: 1.1ms | Allocations: 1607)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 15:55:00 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 2.4ms | ActiveRecord: 1.0ms | Allocations: 1607)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-28 15:55:03 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.9ms | Allocations: 1176)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 16:16:32 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 32ms (Views: 3.8ms | ActiveRecord: 10.5ms | Allocations: 3967)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-28 16:16:32 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 1607)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-28 16:16:40 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1e53d670>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 422 Unprocessable Entity in 9ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 2885)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-05-30 10:55:21 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 269ms (Views: 0.3ms | ActiveRecord: 165.2ms | Allocations: 3128)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 10:55:22 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.8ms | Allocations: 1673)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 10:55:22 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (4.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 19ms (Views: 2.7ms | ActiveRecord: 4.6ms | Allocations: 1608)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 10:55:27 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"3", "vegetarian"=>false, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"3", "vegetarian"=>false}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1d76e670>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"3", "vegetarian"=>false, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"3", "vegetarian"=>false}} }[0m
+Completed 422 Unprocessable Entity in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 925)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:55:38 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 169)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:56:59 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 194)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:57:16 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 168)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:57:42 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 194)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:57:53 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 168)
+
+
+Started POST "/recipes/" for 127.0.0.1 at 2022-05-30 10:58:08 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true", "recipe"=>{"name"=>"Mac and cheese", "instructions"=>"Cook some mac, then add cheese.", "time_to_make"=>"15", "vegetarian"=>"true"}}
+Completed 500 Internal Server Error in 106770ms (ActiveRecord: 1.2ms | Allocations: 92909)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `authorize'
+app/controllers/recipes_controller.rb:57:in `authorize'
+Started GET "/recipes" for 127.0.0.1 at 2022-05-30 10:59:59 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 198ms (Views: 138.3ms | ActiveRecord: 9.0ms | Allocations: 1688654)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2022-05-30 11:00:08 -0700
+Processing by SessionsController#destroy as */*
+Completed 204 No Content in 15ms (ActiveRecord: 0.0ms | Allocations: 59039)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-30 11:00:08 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 74ms (Views: 66.2ms | ActiveRecord: 1.3ms | Allocations: 560651)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-05-30 11:00:12 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"Zach", "password"=>"[FILTERED]", "session"=>{"username"=>"Zach", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Zach"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 201 Created in 461ms (Views: 7.9ms | ActiveRecord: 6.0ms | Allocations: 1653163)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-05-30 11:00:13 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 75ms (Views: 69.0ms | ActiveRecord: 1.4ms | Allocations: 609038)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:01:41 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (3.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 458ms (Views: 211.8ms | ActiveRecord: 17.6ms | Allocations: 4354929)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:01:43 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 85ms (Views: 54.9ms | ActiveRecord: 2.6ms | Allocations: 715436)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:01:56 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false}}
+Completed 500 Internal Server Error in 8542ms (ActiveRecord: 3.5ms | Allocations: 95951)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/recipes_controller.rb:20:in `create'
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:02:13 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1e317120>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false}} }[0m
+Completed 422 Unprocessable Entity in 201ms (Views: 20.1ms | ActiveRecord: 6.4ms | Allocations: 1736066)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:02:29 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae2219c5a8>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>false}} }[0m
+Completed 500 Internal Server Error in 261115ms (ActiveRecord: 6.9ms | Allocations: 1551248)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/recipes_controller.rb:21:in `create'
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:06:57 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1dbefb90>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 500 Internal Server Error in 35727ms (ActiveRecord: 0.0ms | Allocations: 269819)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/recipes_controller.rb:21:in `create'
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:08:43 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1a6e6d40>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 500 Internal Server Error in 5520ms (ActiveRecord: 5.4ms | Allocations: 1540272)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/recipes_controller.rb:21:in `create'
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:09:02 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1a60f1d8>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 422 Unprocessable Entity in 199ms (Views: 2.7ms | ActiveRecord: 5.4ms | Allocations: 1783248)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:11:22 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1dda58b8>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 422 Unprocessable Entity in 182ms (Views: 4.1ms | ActiveRecord: 4.9ms | Allocations: 1784013)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:11:47 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae220edf30>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 422 Unprocessable Entity in 189ms (Views: 4.0ms | ActiveRecord: 4.9ms | Allocations: 1783454)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:12:09 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1deb8ea8>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true}} }[0m
+Completed 422 Unprocessable Entity in 180ms (Views: 2.4ms | ActiveRecord: 5.1ms | Allocations: 1784346)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:13:59 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 618ms (Views: 282.9ms | ActiveRecord: 17.4ms | Allocations: 4353339)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:14:11 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1de998f0>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1}} }[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (1.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "asdf"], ["instructions", "asdf"], ["time_to_make", 5], ["vegetarian", true], ["user_id", 1], ["created_at", "2022-05-30 18:14:11.844203"], ["updated_at", "2022-05-30 18:14:11.844203"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (1.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (1.4ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["recipe_id", 9], ["created_at", "2022-05-30 18:14:12.102544"], ["updated_at", "2022-05-30 18:14:12.102544"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 426ms (Views: 6.3ms | ActiveRecord: 26.2ms | Allocations: 3418720)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:18:09 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 364ms (Views: 168.0ms | ActiveRecord: 12.5ms | Allocations: 4425688)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-05-30 11:18:14 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 97ms (Views: 8.1ms | ActiveRecord: 3.2ms | Allocations: 400133)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:18:15 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 86ms (Views: 58.0ms | ActiveRecord: 2.6ms | Allocations: 785500)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:18:15 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 71ms (Views: 46.4ms | ActiveRecord: 2.1ms | Allocations: 787856)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:18:31 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"Mac", "instructions"=>"Make some mac, add some cheese.", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1, "recipe"=>{"name"=>"Mac", "instructions"=>"Make some mac, add some cheese.", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae1dfa5f50>, params: {"name"=>"Mac", "instructions"=>"Make some mac, add some cheese.", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"Mac", "instructions"=>"Make some mac, add some cheese.", "time_to_make"=>"5", "vegetarian"=>true, "user_id"=>1}} }[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (1.2ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Mac"], ["instructions", "Make some mac, add some cheese."], ["time_to_make", 5], ["vegetarian", true], ["user_id", 1], ["created_at", "2022-05-30 18:18:31.150154"], ["updated_at", "2022-05-30 18:18:31.150154"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (3.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (1.1ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["recipe_id", 10], ["created_at", "2022-05-30 18:18:31.378076"], ["updated_at", "2022-05-30 18:18:31.378076"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 376ms (Views: 6.0ms | ActiveRecord: 25.3ms | Allocations: 3417246)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:19:17 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 110ms (Views: 76.2ms | ActiveRecord: 2.4ms | Allocations: 855566)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-05-30 11:20:35 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"stuff", "instructions"=>"Do stuff.", "time_to_make"=>"10", "vegetarian"=>true, "user_id"=>1, "recipe"=>{"name"=>"stuff", "instructions"=>"Do stuff.", "time_to_make"=>"10", "vegetarian"=>true, "user_id"=>1}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fae221342f0>, params: {"name"=>"stuff", "instructions"=>"Do stuff.", "time_to_make"=>"10", "vegetarian"=>true, "user_id"=>1, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"stuff", "instructions"=>"Do stuff.", "time_to_make"=>"10", "vegetarian"=>true, "user_id"=>1}} }[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (1.0ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "stuff"], ["instructions", "Do stuff."], ["time_to_make", 10], ["vegetarian", true], ["user_id", 1], ["created_at", "2022-05-30 18:20:35.799484"], ["updated_at", "2022-05-30 18:20:35.799484"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (2.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (3.0ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["recipe_id", 11], ["created_at", "2022-05-30 18:20:35.930960"], ["updated_at", "2022-05-30 18:20:35.930960"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 258ms (Views: 5.1ms | ActiveRecord: 24.0ms | Allocations: 2437251)
+
+
+Started GET "/users/1/recipes" for 127.0.0.1 at 2022-05-30 11:21:24 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 78ms (Views: 57.7ms | ActiveRecord: 1.8ms | Allocations: 925630)
+
+

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Checkbox, Input, Button } from 'antd';
-function NewRecipeForm({ onNewRecipe }) {
+function NewRecipeForm({ onNewRecipe, user }) {
   const [name, setName] = useState('');
   const [instructions, setInstructions] = useState('');
   const [timeToMake, setTimeToMake] = useState('');
@@ -12,6 +12,7 @@ function NewRecipeForm({ onNewRecipe }) {
       instructions: instructions,
       time_to_make: timeToMake,
       vegetarian: vegetarian,
+      user_id: user.id,
     };
     fetch('/recipes', {
       method: 'POST',
@@ -19,7 +20,10 @@ function NewRecipeForm({ onNewRecipe }) {
       body: JSON.stringify(new_recipe),
     })
       .then((res) => res.json())
-      .then(onNewRecipe(new_recipe));
+      .then((data) => {
+        console.log(data);
+        onNewRecipe(new_recipe);
+      });
   }
 
   return (

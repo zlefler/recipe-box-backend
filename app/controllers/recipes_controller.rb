@@ -17,19 +17,18 @@ skip_before_action :authorize, only: [:index, :show]
 
     def create
         recipe = Recipe.create(recipe_params)
-        
         if recipe.valid?
             user_id = session[:user_id]
             Bookmark.create(recipe_id: recipe[:id], user_id: user_id)
             render json: recipe, status: :created
         else
-            render json: {errors: recipe.errors}, status: :unprocessable_entity
+            render json: {errors: recipe.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
     def update
         recipe = Recipe.find(params[:id])
-        recipe.update(recipe_params)
+        recipe.update(recipe_params) 
         render json: recipe, status: :accepted
     end
 
@@ -57,7 +56,7 @@ skip_before_action :authorize, only: [:index, :show]
     end
 
     def recipe_params
-        params.permit(:name, :instructions, :time_to_make, :vegetarian)
+        params.permit(:name, :instructions, :time_to_make, :vegetarian, :user_id)
     end
 
     def not_found

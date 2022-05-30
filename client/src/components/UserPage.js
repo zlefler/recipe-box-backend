@@ -11,11 +11,16 @@ function UserPage({ user, userpage }) {
   useEffect(() => {
     fetch(`/users/${user.id}/recipes`)
       .then((res) => res.json())
-      .then((data) => setUserRecipes(data));
+      .then((data) => {
+        console.log(data);
+        setUserRecipes(data);
+      });
   }, [user.id]);
 
   function onNewRecipe(new_recipe) {
+    console.log(`before: ${userRecipes}`);
     setUserRecipes([...userRecipes, new_recipe]);
+    console.log(`after: ${userRecipes}`);
   }
 
   function onShowFormClick() {
@@ -28,7 +33,7 @@ function UserPage({ user, userpage }) {
       <Button onClick={onShowFormClick}>
         {showForm ? 'Hide Form' : 'Add Recipe'}
       </Button>
-      {showForm && <NewRecipeForm onNewRecipe={onNewRecipe} />}
+      {showForm && <NewRecipeForm onNewRecipe={onNewRecipe} user={user} />}
       <RecipeList user={user} recipes={userRecipes} userpage={userpage} />
     </div>
   );
