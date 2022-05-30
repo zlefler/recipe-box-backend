@@ -40,7 +40,7 @@ function RecipeCard({
         <p>{recipe.instructions.slice(0, 250)}...</p>
       )}
       <Button
-        className="card-button"
+        className="button"
         onClick={() => setFullRecipe((fullRecipe) => !fullRecipe)}
       >
         {fullRecipe ? 'Hide Recipe' : 'See Full Recipe'}
@@ -49,7 +49,7 @@ function RecipeCard({
       {user && location.pathname !== '/userpage' && recipe.user_id !== user.id && (
         <>
           <Button
-            className="card-button"
+            className="button"
             onClick={() => handleSaveRecipe(user, recipe)}
           >
             Save Recipe
@@ -63,7 +63,7 @@ function RecipeCard({
           {recipe.user_id === user.id ? (
             <>
               <Button
-                className="card-button"
+                className="button"
                 type="primary"
                 onClick={() => handleEditRecipe(recipe)}
               >
@@ -75,12 +75,14 @@ function RecipeCard({
                 cancelText="No"
                 onConfirm={() => handleDeleteRecipe(recipe.id)}
               >
-                <Button type="danger">DELETE</Button>
+                <Button className="button" type="danger">
+                  DELETE
+                </Button>
               </Popconfirm>
             </>
           ) : (
             <Button
-              className="card-button"
+              className="button"
               type="danger"
               onClick={() => handleUnsaveRecipe(recipe.id)}
             >

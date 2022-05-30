@@ -32,6 +32,7 @@
   margin: 2%;
   display: inline-block;
   background-color: #FEFBE7;
+  border-radius: 50px;
 }
 
 .logout-button {
@@ -43,11 +44,12 @@
 }
 
 .login {
-  width: 15%
+  width: 15%;
 }
 
 .signup {
-  width: 15%
+  /* width: 15%; */
+  float: right;
 }
 
 .navbar-div {
@@ -58,15 +60,24 @@
   background-color: #F9EBC8;
 } */
 
-.card-button {
+.button {
   margin: .2rem;
-  width: 8rem;
+  /* width: 8rem; */
+  border-radius: 8px;
 }
 
-/* .signup-div {
-  background-color: #F9EBC8;
-} */
+.signup-div {
+ width:25%
+}
 
 .body {
   background-color: #F9EBC8;
+}
+
+.input {
+  border-radius: 7px;
+}
+
+.textarea {
+  width: 30%
 }

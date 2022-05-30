@@ -29,23 +29,23 @@ function SignUp() {
       <Form onFinish={handleSubmit}>
         <Form.Item label="Username" name="username">
           <Input
-            className="signup"
+            className="signup input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </Form.Item>
         <Form.Item name="password" label="Password">
           <Input
-            className="signup"
+            className="signup input"
             type="password"
             id="sign_up_password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Item>
-        <Form.Item name="password_confirmation" label="Password Confirmation">
+        <Form.Item name="password_confirmation" label="Confirm your password:">
           <Input
-            className="signup"
+            className="signup input"
             type="password"
             id="password_confirmation"
             value={passwordConfirmation}

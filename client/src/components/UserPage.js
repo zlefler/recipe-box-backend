@@ -11,10 +11,7 @@ function UserPage({ user, userpage }) {
   useEffect(() => {
     fetch(`/users/${user.id}/recipes`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setUserRecipes(data);
-      });
+      .then((data) => setUserRecipes(data));
   }, [user.id]);
 
   function onNewRecipe(new_recipe) {
@@ -26,11 +23,11 @@ function UserPage({ user, userpage }) {
   function onShowFormClick() {
     setShowForm((showForm) => !showForm);
   }
-
+  console.log(user);
   return (
     <div>
-      <Title>Your Saved Recipes</Title>
-      <Button onClick={onShowFormClick}>
+      <Title>{user.username}'s page</Title>
+      <Button onClick={onShowFormClick} className="button">
         {showForm ? 'Hide Form' : 'Add Recipe'}
       </Button>
       {showForm && <NewRecipeForm onNewRecipe={onNewRecipe} user={user} />}

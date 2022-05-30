@@ -19,7 +19,7 @@ function NavBar({
       {user && (
         <div>
           <Link to="/">
-            <Button className="logout-button" onClick={handleLogout}>
+            <Button className="logout-button button" onClick={handleLogout}>
               Logout
             </Button>
           </Link>
@@ -29,7 +29,7 @@ function NavBar({
           {location.pathname !== '/userpage' && (
             <div>
               <Link to="/userpage" onClick={handleUserpageClick}>
-                <Title level={3}>Go To Saved Recipes</Title>
+                <Title level={3}>Go To Your Page</Title>
               </Link>
             </div>
           )}

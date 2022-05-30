@@ -25,7 +25,7 @@ function Login({ onLogin }) {
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
         <Input
-          className="login"
+          className="login input"
           type="text"
           id="name"
           onChange={(e) => setUsername(e.target.value)}
@@ -37,14 +37,14 @@ function Login({ onLogin }) {
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input
-          className="login"
+          className="login input"
           type="password"
           id="login_password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button className="button" type="primary" htmlType="submit">
           Login
         </Button>
       </Form.Item>

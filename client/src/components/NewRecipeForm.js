@@ -26,11 +26,13 @@ function NewRecipeForm({ onNewRecipe, user }) {
       });
   }
 
+  const { TextArea } = Input;
+
   return (
     <Form className="navbar-div" onFinish={onSubmit}>
       <Form.Item name="name" label="Name">
         <Input
-          className="recipe-name"
+          className="recipe-name input"
           size="small"
           type="text"
           onChange={(e) => setName(e.target.value)}
@@ -38,17 +40,18 @@ function NewRecipeForm({ onNewRecipe, user }) {
         />
       </Form.Item>
       <Form.Item name="instructions" label="Instructions">
-        <textarea
+        <TextArea
+          className="input textarea"
           name="instructions"
           onChange={(e) => setInstructions(e.target.value)}
           id="instructions"
-          cols="30"
+          cols="15"
           rows="10"
-        ></textarea>
+        ></TextArea>
       </Form.Item>
       <Form.Item name="time_to_make" label="Time To Make (in minutes)">
         <Input
-          className="recipe-time"
+          className="recipe-time input"
           size="small"
           type="text"
           id="time_to_make"
@@ -57,12 +60,13 @@ function NewRecipeForm({ onNewRecipe, user }) {
       </Form.Item>
       <Form.Item name="vegetarian" label="Vegetarian?">
         <Checkbox
+          className="input"
           checked={vegetarian}
           onChange={(e) => setVegetarian(e.target.checked)}
         />
       </Form.Item>
       <Form.Item name="submit">
-        <Button type="primary" htmlType="submit">
+        <Button className="button" type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
