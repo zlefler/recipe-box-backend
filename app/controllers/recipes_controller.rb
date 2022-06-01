@@ -38,7 +38,7 @@ skip_before_action :authorize, only: [:index, :show]
             recipe = Recipe.find(params[:id])
             recipe.destroy
         else
-            user_recipe = user.recipe_saves.find_by(recipe_id: params[:id])
+            user_recipe = user.bookmarks.find_by(recipe_id: params[:id])
             render json: user_recipe.destroy
         end
     end

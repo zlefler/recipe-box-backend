@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 import EditRecipe from './EditRecipe';
 
-function RecipeList({ user }) {
+function RecipeList({ user, userRecipes }) {
   const [recipes, setRecipes] = useState([]);
   const [editRecipe, setEditRecipe] = useState(false);
   const [recipeToEdit, setRecipeToEdit] = useState('');
@@ -12,15 +12,13 @@ function RecipeList({ user }) {
 
   useEffect(() => {
     if (location.pathname === '/userpage') {
-      fetch(`/users/${user.id}/recipes`)
-        .then((res) => res.json())
-        .then((data) => setRecipes(data));
+      setRecipes(userRecipes);
     } else {
       fetch('/recipes')
         .then((res) => res.json())
         .then((data) => setRecipes(data));
     }
-  }, [user, location.pathname]);
+  }, [user, location.pathname, userRecipes]);
 
   function handleDeleteRecipe(recipe_id) {
     fetch(`/recipes/${recipe_id}`, {

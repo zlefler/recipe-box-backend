@@ -20,10 +20,7 @@ function NewRecipeForm({ onNewRecipe, user }) {
       body: JSON.stringify(new_recipe),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        onNewRecipe(new_recipe);
-      });
+      .then(onNewRecipe);
   }
 
   const { TextArea } = Input;

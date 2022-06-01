@@ -24752,3 +24752,1137 @@ Completed 401 Unauthorized in 74ms (Views: 3.5ms | ActiveRecord: 18.2ms | Alloca
 Completed 200 OK in 251ms (Views: 216.7ms | ActiveRecord: 27.2ms | Allocations: 1801648)
 
 
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:26:59 -0700
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:26:59 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (41.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#index as */*
+Processing by UsersController#show as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 39ms (Views: 8.1ms | ActiveRecord: 3.6ms | Allocations: 31471)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 46ms (Views: 0.2ms | ActiveRecord: 11.7ms | Allocations: 34209)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (85.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recipe_app_development"[0m
+  [1m[35m (34.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recipe_app_test"[0m
+  [1m[35m (177.1ms)[0m  [1m[35mCREATE DATABASE "recipe_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (94.3ms)[0m  [1m[35mCREATE DATABASE "recipe_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (47.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8277932024918942610)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220512212023)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (43.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212023"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipes (20220512212052)
+  [1m[36mTRANSACTION (39.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" bigserial primary key, "name" character varying, "instructions" text, "time_to_make" integer, "vegetarian" boolean, "user_id" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212052"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBookmarks (20220512212125)
+  [1m[36mTRANSACTION (39.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "bookmarks" ("id" bigserial primary key, "user_id" integer NOT NULL, "recipe_id" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212125"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-06-01 15:34:43.902987"], ["updated_at", "2022-06-01 15:34:43.902987"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8277932024918942610)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Zach"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 15:34:44.222783"], ["updated_at", "2022-06-01 15:34:44.222783"]]
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Maya"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 15:34:44.455022"], ["updated_at", "2022-06-01 15:34:44.455022"]]
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Cubano"], ["instructions", "Mix the mayonnaise and mustard in a small bowl and spread evenly on the inside of the bread slices. Layer on half of the cheese, the ham, pork, Quick Garlic Pickles and the remaining cheese. Cover with another slice of bread and butter the outside (top and bottom) of the sandwich.\nHeat a cast-iron skillet to medium-high heat and place the sandwiches in the pan. Top with a second cast-iron skillet to weigh the sandwiches down. After 2 minutes, turn down the heat to medium low, flip the sandwiches and weigh down again with the second skillet. Check the sandwiches after 1 more minute, and remove when golden brown and the cheese has melted."], ["time_to_make", 30], ["vegetarian", false], ["user_id", 2], ["created_at", "2022-06-01 15:34:44.486688"], ["updated_at", "2022-06-01 15:34:44.486688"]]
+  [1m[36mTRANSACTION (40.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.3ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Spanish Rice Fritatta"], ["instructions", "Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes)."], ["time_to_make", 35], ["vegetarian", true], ["user_id", 1], ["created_at", "2022-06-01 15:34:44.532665"], ["updated_at", "2022-06-01 15:34:44.532665"]]
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Buttermilk-fried Chicken"], ["instructions", "Combine the paprika, black pepper, garlic powder, oregano, and cayenne in a small bowl and mix thoroughly with a fork.\n\n    Whisk the buttermilk, egg, 1 tablespoon salt, and 2 tablespoons of the spice mixture in a large bowl. Add the chicken pieces and toss and turn to coat. Transfer the contents of the bowl to a gallon-sized zipper-lock freezer bag and refrigerate for at least 4 hours, and up to overnight, flipping the bag occasionally to redistribute the contents and coat the chicken evenly.\n    \n    Whisk together the flour, cornstarch, baking powder, 2 teaspoons salt, and the remaining spice mixture in a large bowl. Add 3 tablespoons of the marinade from the zipper-lock bag and work it into the flour with your fingertips. Remove one piece of chicken from the bag, allowing excess buttermilk to drip off, drop the chicken into the flour mixture, and toss to coat. Continue adding chicken pieces to the flour mixture one at a time until they are all in the bowl. Toss the chicken until every piece is thoroughly coated, pressing with your hands to get the flour to adhere in a thick layer.\n    \n    Adjust an oven rack to the middle position and preheat the oven to 350°F. Heat the shortening or oil to 425°F in a 12-inch straight-sided cast-iron chicken fryer or a large wok over medium-high heat. Adjust the heat as necessary to maintain the temperature, being careful not to let the fat get any hotter.\n    \n    One piece at a time, transfer the coated chicken to a fine-mesh strainer and shake to remove excess flour. Transfer to a wire rack set on a rimmed baking sheet. Once all the chicken pieces are coated, place skin side down in the pan. The temperature should drop to 300°F; adjust the heat to maintain the temperature at 300°F for the duration of the cooking. Fry the chicken until it’s a deep golden brown on the first side, about 6 minutes; do not move the chicken or start checking for doneness until it has fried for at least 3 minutes, or you may knock off the coating. Carefully flip the chicken pieces with tongs and cook until the second side is golden brown, about 4 minutes longer.\n    \n    Transfer chicken to a clean wire rack set in a rimmed baking sheet, season lightly with salt, and place in the oven. Bake until thickest part of breast pieces registers 150°F (65.5°C) on an instant-read thermometer, and thigh/drumstick pieces register 165°F (74°C), 5 to 10 minutes; remove chicken pieces as they reach their target temperature, and transfer to a second wire rack set in a rimmed baking sheet, or a paper towel-lined plate. Season with salt to taste. Serve immediately—or, for extra-crunchy fried chicken, proceed to step 7.\n\n    Place the plate of cooked chicken in the refrigerator for at least 1 hour, and up to overnight. When ready to serve, reheat the oil to 400°F. Add the chicken pieces and cook, flipping them once halfway through cooking, until completely crisp, about 5 minutes. Transfer to a wire rack set on a rimmed baking sheet to drain, then serve immediately."], ["time_to_make", 360], ["vegetarian", false], ["user_id", 2], ["created_at", "2022-06-01 15:34:44.539614"], ["updated_at", "2022-06-01 15:34:44.539614"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.2ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Macaroni Salad"], ["instructions", "Cook the macaroni in lightly salted water according to the package directions. Drain and rinse under cold water to cool. Set aside.\n    Mix together the mayo, vinegar, sugar, salt, and pepper. Splash in enough milk to make it pourable. Splash in pickle juice for extra flavor. Taste and adjust seasonings as needed. Set aside.\n    Place the cooled macaroni in a large bowl and pour in 3/4 of the dressing. Toss and add more dressing if you'd like. (The dressing will seem a little thin, but it will thicken up as the salad chills.)\n    Stir in the roasted red peppers (or pimentos), olives, pickles, and green onions. Add more of any ingredient if you'd like more stuff going on! At the end, splash in a little more pickle juice and stir.\n    Chill for at least 2 hours before serving. Sprinkle with sliced green onions to serve!"], ["time_to_make", 25], ["vegetarian", true], ["user_id", 2], ["created_at", "2022-06-01 15:34:44.544416"], ["updated_at", "2022-06-01 15:34:44.544416"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["recipe_id", 1], ["created_at", "2022-06-01 15:34:44.561060"], ["updated_at", "2022-06-01 15:34:44.561060"]]
+  [1m[36mTRANSACTION (40.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBookmark Create (0.2ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["recipe_id", 2], ["created_at", "2022-06-01 15:34:44.608991"], ["updated_at", "2022-06-01 15:34:44.608991"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:34:47 -0700
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:34:47 -0700
+Processing by UsersController#show as */*
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 42ms (Views: 0.2ms | ActiveRecord: 10.9ms | Allocations: 14109)
+
+
+Completed 200 OK in 40ms (Views: 28.7ms | ActiveRecord: 10.3ms | Allocations: 13846)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-01 08:39:48 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fd061894278>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "asdf"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 15:39:49.086196"], ["updated_at", "2022-06-01 15:39:49.086196"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Completed 201 Created in 244ms (Views: 0.3ms | ActiveRecord: 9.4ms | Allocations: 4728)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:39:50 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 1.1ms | Allocations: 1093)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-06-01 08:39:53 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "session"=>{"username"=>"asdf", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 201 Created in 229ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 947)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:39:53 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms | Allocations: 1074)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:40:01 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 41ms (Views: 10.3ms | ActiveRecord: 4.0ms | Allocations: 11262)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:40:01 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 1421)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:40:02 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 1.0ms | Allocations: 1074)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 08:40:06 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>3, "recipe_id"=>1, "bookmark"=>{"user_id"=>3, "recipe_id"=>1}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd06396bdc0>, params: {"user_id"=>3, "recipe_id"=>1, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>3, "recipe_id"=>1}} }[0m
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd06396bdc0>, params: {"user_id"=>3, "recipe_id"=>1, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>3, "recipe_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 1], ["created_at", "2022-06-01 15:40:06.144493"], ["updated_at", "2022-06-01 15:40:06.144493"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (39.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 56ms (Views: 0.3ms | ActiveRecord: 42.1ms | Allocations: 7500)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 08:40:15 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>3, "recipe_id"=>2, "bookmark"=>{"user_id"=>3, "recipe_id"=>2}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd0606634a0>, params: {"user_id"=>3, "recipe_id"=>2, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>3, "recipe_id"=>2}} }[0m
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd0606634a0>, params: {"user_id"=>3, "recipe_id"=>2, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>3, "recipe_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 2], ["created_at", "2022-06-01 15:40:15.893938"], ["updated_at", "2022-06-01 15:40:15.893938"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 11ms (Views: 0.3ms | ActiveRecord: 1.9ms | Allocations: 4189)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:40:18 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (2.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 14ms (Views: 3.9ms | ActiveRecord: 4.3ms | Allocations: 1607)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:40:18 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (3.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 2.8ms | ActiveRecord: 4.2ms | Allocations: 1607)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:40:40 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3, "recipe"=>{"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd060361d60>, params: {"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.3ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "mac and cheese"], ["instructions", "Take some mac, add some cheese"], ["time_to_make", 25], ["vegetarian", true], ["user_id", 3], ["created_at", "2022-06-01 15:40:40.107507"], ["updated_at", "2022-06-01 15:40:40.107507"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.3ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 5], ["created_at", "2022-06-01 15:40:40.158302"], ["updated_at", "2022-06-01 15:40:40.158302"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 59ms (Views: 0.3ms | ActiveRecord: 43.4ms | Allocations: 6619)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:40:45 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3, "recipe"=>{"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd05fe283f8>, params: {"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"mac and cheese", "instructions"=>"Take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "mac and cheese"], ["instructions", "Take some mac, add some cheese"], ["time_to_make", 25], ["vegetarian", true], ["user_id", 3], ["created_at", "2022-06-01 15:40:45.097600"], ["updated_at", "2022-06-01 15:40:45.097600"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.2ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 6], ["created_at", "2022-06-01 15:40:45.104295"], ["updated_at", "2022-06-01 15:40:45.104295"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 14ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 6242)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:42:19 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.7ms | Allocations: 1814)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:42:27 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 860)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:42:27 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 1.0ms | Allocations: 1814)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:42:27 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.5ms | Allocations: 1814)
+
+
+Started DELETE "/recipes/5" for 127.0.0.1 at 2022-06-01 08:42:31 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms | Allocations: 2786)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd05f342240>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:45:39 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (4.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 74ms (Views: 69.3ms | ActiveRecord: 4.3ms | Allocations: 1277)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:45:48 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (21.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 53ms (Views: 6.9ms | ActiveRecord: 21.4ms | Allocations: 1814)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:45:48 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 36ms (Views: 5.5ms | ActiveRecord: 1.2ms | Allocations: 1815)
+
+
+Started DELETE "/recipes/5" for 127.0.0.1 at 2022-06-01 08:45:52 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms | Allocations: 2732)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd063eabab0>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started DELETE "/recipes/6" for 127.0.0.1 at 2022-06-01 08:45:53 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.2ms | Allocations: 2729)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd05fc87e18>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:46:01 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd0618cd280>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.7ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "asdf"], ["instructions", "asdf"], ["time_to_make", 34], ["vegetarian", true], ["user_id", 3], ["created_at", "2022-06-01 15:46:01.416317"], ["updated_at", "2022-06-01 15:46:01.416317"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (1.0ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 7], ["created_at", "2022-06-01 15:46:01.432704"], ["updated_at", "2022-06-01 15:46:01.432704"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 50ms (Views: 0.5ms | ActiveRecord: 11.6ms | Allocations: 6254)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:47:35 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd05fbf6828>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"34", "vegetarian"=>true, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "asdf"], ["instructions", "asdf"], ["time_to_make", 34], ["vegetarian", true], ["user_id", 3], ["created_at", "2022-06-01 15:47:35.501550"], ["updated_at", "2022-06-01 15:47:35.501550"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (40.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.7ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 8], ["created_at", "2022-06-01 15:47:35.557243"], ["updated_at", "2022-06-01 15:47:35.557243"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 76ms (Views: 0.6ms | ActiveRecord: 46.2ms | Allocations: 6245)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:47:37 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.4ms | Allocations: 748)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:47:38 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 14ms (Views: 7.1ms | ActiveRecord: 2.4ms | Allocations: 2018)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:47:38 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 18ms (Views: 8.6ms | ActiveRecord: 2.0ms | Allocations: 2019)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:47:45 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd063abf578>, params: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (1.9ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "fdsa"], ["instructions", "fdsa"], ["time_to_make", 2], ["vegetarian", false], ["user_id", 3], ["created_at", "2022-06-01 15:47:45.237929"], ["updated_at", "2022-06-01 15:47:45.237929"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (1.2ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 9], ["created_at", "2022-06-01 15:47:45.258875"], ["updated_at", "2022-06-01 15:47:45.258875"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 37ms (Views: 1.3ms | ActiveRecord: 8.4ms | Allocations: 6242)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:47:50 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd06384cdb8>, params: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "fdsa"], ["instructions", "fdsa"], ["time_to_make", 2], ["vegetarian", false], ["user_id", 3], ["created_at", "2022-06-01 15:47:50.279152"], ["updated_at", "2022-06-01 15:47:50.279152"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.6ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 10], ["created_at", "2022-06-01 15:47:50.294510"], ["updated_at", "2022-06-01 15:47:50.294510"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 33ms (Views: 0.5ms | ActiveRecord: 5.0ms | Allocations: 6253)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:47:54 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 3.0ms | Allocations: 750)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:47:54 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 13ms (Views: 6.3ms | ActiveRecord: 1.5ms | Allocations: 2222)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:47:54 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (2.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 8.4ms | ActiveRecord: 3.0ms | Allocations: 2222)
+
+
+Started DELETE "/recipes/8" for 127.0.0.1 at 2022-06-01 08:48:00 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.8ms | Allocations: 2723)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd060309480>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started DELETE "/recipes/9" for 127.0.0.1 at 2022-06-01 08:48:01 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms | Allocations: 2722)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd05fe10c30>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started DELETE "/recipes/5" for 127.0.0.1 at 2022-06-01 08:48:03 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms | Allocations: 2723)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd05fd9fa80>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started DELETE "/recipes/6" for 127.0.0.1 at 2022-06-01 08:48:04 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.6ms | Allocations: 2721)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd063ee2628>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started DELETE "/recipes/7" for 127.0.0.1 at 2022-06-01 08:48:08 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.6ms | Allocations: 2721)
+
+
+  
+NoMethodError (undefined method `recipe_saves' for #<User:0x00007fd05fcb5908>
+Did you mean?  recipes):
+  
+app/controllers/recipes_controller.rb:41:in `destroy'
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:48:21 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 749)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:48:22 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 8.1ms | ActiveRecord: 2.1ms | Allocations: 2222)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:48:22 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.5ms | Allocations: 2222)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:48:59 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 107ms (Views: 4.5ms | ActiveRecord: 67.5ms | Allocations: 4960)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:49:00 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 67ms (Views: 9.0ms | ActiveRecord: 13.8ms | Allocations: 9649)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:49:00 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 4.3ms | ActiveRecord: 0.6ms | Allocations: 2222)
+
+
+Started DELETE "/recipes/5" for 127.0.0.1 at 2022-06-01 08:49:03 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.5ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 25ms (Views: 0.4ms | ActiveRecord: 5.9ms | Allocations: 3554)
+
+
+Started DELETE "/recipes/6" for 127.0.0.1 at 2022-06-01 08:49:05 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.5ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 41ms (Views: 0.8ms | ActiveRecord: 24.8ms | Allocations: 2725)
+
+
+Started DELETE "/recipes/7" for 127.0.0.1 at 2022-06-01 08:49:07 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.8ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (1.9ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (9.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 32ms (Views: 0.9ms | ActiveRecord: 14.3ms | Allocations: 2731)
+
+
+Started DELETE "/recipes/8" for 127.0.0.1 at 2022-06-01 08:49:08 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.9ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 26ms (Views: 0.8ms | ActiveRecord: 3.6ms | Allocations: 2720)
+
+
+Started DELETE "/recipes/9" for 127.0.0.1 at 2022-06-01 08:49:10 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 15ms (Views: 0.7ms | ActiveRecord: 6.7ms | Allocations: 2727)
+
+
+Started DELETE "/recipes/10" for 127.0.0.1 at 2022-06-01 08:49:12 -0700
+Processing by RecipesController#destroy as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:36:in `destroy'
+  [1m[36mBookmark Load (0.4ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 3], ["recipe_id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:41:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mBookmark Destroy (5.8ms)[0m  [1m[31mDELETE FROM "bookmarks" WHERE "bookmarks"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:42:in `destroy'
+Completed 200 OK in 22ms (Views: 0.7ms | ActiveRecord: 7.3ms | Allocations: 2723)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:49:21 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"23", "vegetarian"=>false, "user_id"=>3, "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"23", "vegetarian"=>false, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd063fa0448>, params: {"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"23", "vegetarian"=>false, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"asdf", "instructions"=>"asdf", "time_to_make"=>"23", "vegetarian"=>false, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "asdf"], ["instructions", "asdf"], ["time_to_make", 23], ["vegetarian", false], ["user_id", 3], ["created_at", "2022-06-01 15:49:21.332426"], ["updated_at", "2022-06-01 15:49:21.332426"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (40.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.7ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 11], ["created_at", "2022-06-01 15:49:21.390411"], ["updated_at", "2022-06-01 15:49:21.390411"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 79ms (Views: 0.8ms | ActiveRecord: 46.3ms | Allocations: 7020)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:53:37 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 746)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:37 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 10ms (Views: 6.2ms | ActiveRecord: 0.9ms | Allocations: 1709)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:37 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 13ms (Views: 8.8ms | ActiveRecord: 1.1ms | Allocations: 1709)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:53:45 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 35ms (Views: 0.9ms | ActiveRecord: 2.9ms | Allocations: 744)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:45 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (19.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (5.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 44ms (Views: 7.3ms | ActiveRecord: 24.9ms | Allocations: 1709)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:45 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 7.2ms | ActiveRecord: 4.3ms | Allocations: 1709)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 08:53:51 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 11ms (Views: 0.9ms | ActiveRecord: 5.4ms | Allocations: 740)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:52 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.6ms | Allocations: 1709)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:53:52 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 0.9ms | Allocations: 1709)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 08:54:50 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd063f009e8>, params: {"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"fdsa", "instructions"=>"fdsa", "time_to_make"=>"2", "vegetarian"=>false, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "fdsa"], ["instructions", "fdsa"], ["time_to_make", 2], ["vegetarian", false], ["user_id", 3], ["created_at", "2022-06-01 15:54:50.139493"], ["updated_at", "2022-06-01 15:54:50.139493"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 12], ["created_at", "2022-06-01 15:54:50.189811"], ["updated_at", "2022-06-01 15:54:50.189811"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 68ms (Views: 2.0ms | ActiveRecord: 45.4ms | Allocations: 6247)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 08:57:12 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 3.4ms | ActiveRecord: 0.6ms | Allocations: 1812)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:57:39 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.6ms | Allocations: 1885)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:59:03 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.7ms | Allocations: 1885)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 08:59:24 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.5ms | Allocations: 1886)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:09 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1885)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:15 -0700
+Processing by RecipesController#index as */*
+Started GET "/me" for 127.0.0.1 at 2022-06-01 09:00:15 -0700
+Processing by UsersController#show as */*
+  [1m[36mRecipe Load (11.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 25ms (Views: 12.3ms | ActiveRecord: 11.8ms | Allocations: 3039)
+
+
+  [1m[36mUser Load (35.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 496ms (Views: 2.3ms | ActiveRecord: 91.7ms | Allocations: 5112)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:15 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 16ms (Views: 13.4ms | ActiveRecord: 1.7ms | Allocations: 1948)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 09:00:18 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (8.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 39ms (Views: 6.2ms | ActiveRecord: 10.3ms | Allocations: 1815)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:25 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.7ms | Allocations: 1885)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:30 -0700
+Processing by RecipesController#index as */*
+Started GET "/me" for 127.0.0.1 at 2022-06-01 09:00:30 -0700
+Processing by UsersController#show as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 0.6ms | Allocations: 2750)
+
+
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 19ms (Views: 0.5ms | ActiveRecord: 4.4ms | Allocations: 2843)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:00:31 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 1885)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 09:00:32 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (2.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 14ms (Views: 6.6ms | ActiveRecord: 3.2ms | Allocations: 1812)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-01 09:00:45 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (126.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 133ms (Views: 1.3ms | ActiveRecord: 126.7ms | Allocations: 746)
+
+
+Started GET "/users/3/recipes" for 127.0.0.1 at 2022-06-01 09:00:45 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (11.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 25ms (Views: 6.9ms | ActiveRecord: 12.3ms | Allocations: 1812)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 09:00:55 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"adsffdsa", "instructions"=>"fdsaasdf", "time_to_make"=>"", "vegetarian"=>false, "user_id"=>3, "recipe"=>{"name"=>"adsffdsa", "instructions"=>"fdsaasdf", "time_to_make"=>"", "vegetarian"=>false, "user_id"=>3}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd063be4890>, params: {"name"=>"adsffdsa", "instructions"=>"fdsaasdf", "time_to_make"=>"", "vegetarian"=>false, "user_id"=>3, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"adsffdsa", "instructions"=>"fdsaasdf", "time_to_make"=>"", "vegetarian"=>false, "user_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "adsffdsa"], ["instructions", "fdsaasdf"], ["time_to_make", nil], ["vegetarian", false], ["user_id", 3], ["created_at", "2022-06-01 16:00:55.391058"], ["updated_at", "2022-06-01 16:00:55.391058"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (59.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 3], ["recipe_id", 13], ["created_at", "2022-06-01 16:00:55.464183"], ["updated_at", "2022-06-01 16:00:55.464183"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 86ms (Views: 0.8ms | ActiveRecord: 64.1ms | Allocations: 6237)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:01:34 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 1986)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (8635.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recipe_app_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (84.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recipe_app_development"[0m
+  [1m[35m (36.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "recipe_app_test"[0m
+  [1m[35m (201.5ms)[0m  [1m[35mCREATE DATABASE "recipe_app_development" ENCODING = 'unicode'[0m
+  [1m[35m (76.7ms)[0m  [1m[35mCREATE DATABASE "recipe_app_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8277932024918942610)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220512212023)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (45.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212023"]]
+  [1m[36mTRANSACTION (39.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipes (20220512212052)
+  [1m[36mTRANSACTION (39.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" bigserial primary key, "name" character varying, "instructions" text, "time_to_make" integer, "vegetarian" boolean, "user_id" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212052"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBookmarks (20220512212125)
+  [1m[36mTRANSACTION (33.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "bookmarks" ("id" bigserial primary key, "user_id" integer NOT NULL, "recipe_id" integer NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220512212125"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-06-01 16:02:25.716563"], ["updated_at", "2022-06-01 16:02:25.716563"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8277932024918942610)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Zach"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 16:02:26.048718"], ["updated_at", "2022-06-01 16:02:26.048718"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "Maya"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 16:02:26.268544"], ["updated_at", "2022-06-01 16:02:26.268544"]]
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Cubano"], ["instructions", "Mix the mayonnaise and mustard in a small bowl and spread evenly on the inside of the bread slices. Layer on half of the cheese, the ham, pork, Quick Garlic Pickles and the remaining cheese. Cover with another slice of bread and butter the outside (top and bottom) of the sandwich.\nHeat a cast-iron skillet to medium-high heat and place the sandwiches in the pan. Top with a second cast-iron skillet to weigh the sandwiches down. After 2 minutes, turn down the heat to medium low, flip the sandwiches and weigh down again with the second skillet. Check the sandwiches after 1 more minute, and remove when golden brown and the cheese has melted."], ["time_to_make", 30], ["vegetarian", false], ["user_id", 2], ["created_at", "2022-06-01 16:02:26.304272"], ["updated_at", "2022-06-01 16:02:26.304272"]]
+  [1m[36mTRANSACTION (20.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.2ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Spanish Rice Fritatta"], ["instructions", "Chop onion and peppers. Melt butter or margarine in a skillet and sauté onion and pepper over medium heat until tender. Stir often.\n    Spray a casserole dish with non-stick cooking spray. Preheat oven to 350 degrees.\n    Chop spinach leaves, parsley and tomato and place in a mixing bowl. Add onions and peppers and stir. Add egg(s) and beat well.\n    Stir salsa into egg mixture along with milk, garlic salt and pepper.\n    Grate cheese and blend into eggs and vegetables along with instant rice.\n    Pour into casserole dish and bake in hot oven until firm (about 35 minutes)."], ["time_to_make", 35], ["vegetarian", true], ["user_id", 1], ["created_at", "2022-06-01 16:02:26.330389"], ["updated_at", "2022-06-01 16:02:26.330389"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Buttermilk-fried Chicken"], ["instructions", "Combine the paprika, black pepper, garlic powder, oregano, and cayenne in a small bowl and mix thoroughly with a fork.\n\n    Whisk the buttermilk, egg, 1 tablespoon salt, and 2 tablespoons of the spice mixture in a large bowl. Add the chicken pieces and toss and turn to coat. Transfer the contents of the bowl to a gallon-sized zipper-lock freezer bag and refrigerate for at least 4 hours, and up to overnight, flipping the bag occasionally to redistribute the contents and coat the chicken evenly.\n    \n    Whisk together the flour, cornstarch, baking powder, 2 teaspoons salt, and the remaining spice mixture in a large bowl. Add 3 tablespoons of the marinade from the zipper-lock bag and work it into the flour with your fingertips. Remove one piece of chicken from the bag, allowing excess buttermilk to drip off, drop the chicken into the flour mixture, and toss to coat. Continue adding chicken pieces to the flour mixture one at a time until they are all in the bowl. Toss the chicken until every piece is thoroughly coated, pressing with your hands to get the flour to adhere in a thick layer.\n    \n    Adjust an oven rack to the middle position and preheat the oven to 350°F. Heat the shortening or oil to 425°F in a 12-inch straight-sided cast-iron chicken fryer or a large wok over medium-high heat. Adjust the heat as necessary to maintain the temperature, being careful not to let the fat get any hotter.\n    \n    One piece at a time, transfer the coated chicken to a fine-mesh strainer and shake to remove excess flour. Transfer to a wire rack set on a rimmed baking sheet. Once all the chicken pieces are coated, place skin side down in the pan. The temperature should drop to 300°F; adjust the heat to maintain the temperature at 300°F for the duration of the cooking. Fry the chicken until it’s a deep golden brown on the first side, about 6 minutes; do not move the chicken or start checking for doneness until it has fried for at least 3 minutes, or you may knock off the coating. Carefully flip the chicken pieces with tongs and cook until the second side is golden brown, about 4 minutes longer.\n    \n    Transfer chicken to a clean wire rack set in a rimmed baking sheet, season lightly with salt, and place in the oven. Bake until thickest part of breast pieces registers 150°F (65.5°C) on an instant-read thermometer, and thigh/drumstick pieces register 165°F (74°C), 5 to 10 minutes; remove chicken pieces as they reach their target temperature, and transfer to a second wire rack set in a rimmed baking sheet, or a paper towel-lined plate. Season with salt to taste. Serve immediately—or, for extra-crunchy fried chicken, proceed to step 7.\n\n    Place the plate of cooked chicken in the refrigerator for at least 1 hour, and up to overnight. When ready to serve, reheat the oil to 400°F. Add the chicken pieces and cook, flipping them once halfway through cooking, until completely crisp, about 5 minutes. Transfer to a wire rack set on a rimmed baking sheet to drain, then serve immediately."], ["time_to_make", 360], ["vegetarian", false], ["user_id", 2], ["created_at", "2022-06-01 16:02:26.335069"], ["updated_at", "2022-06-01 16:02:26.335069"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Create (0.2ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Macaroni Salad"], ["instructions", "Cook the macaroni in lightly salted water according to the package directions. Drain and rinse under cold water to cool. Set aside.\n    Mix together the mayo, vinegar, sugar, salt, and pepper. Splash in enough milk to make it pourable. Splash in pickle juice for extra flavor. Taste and adjust seasonings as needed. Set aside.\n    Place the cooled macaroni in a large bowl and pour in 3/4 of the dressing. Toss and add more dressing if you'd like. (The dressing will seem a little thin, but it will thicken up as the salad chills.)\n    Stir in the roasted red peppers (or pimentos), olives, pickles, and green onions. Add more of any ingredient if you'd like more stuff going on! At the end, splash in a little more pickle juice and stir.\n    Chill for at least 2 hours before serving. Sprinkle with sliced green onions to serve!"], ["time_to_make", 25], ["vegetarian", true], ["user_id", 2], ["created_at", "2022-06-01 16:02:26.339753"], ["updated_at", "2022-06-01 16:02:26.339753"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBookmark Create (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["recipe_id", 1], ["created_at", "2022-06-01 16:02:26.358026"], ["updated_at", "2022-06-01 16:02:26.358026"]]
+  [1m[36mTRANSACTION (39.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBookmark Create (0.3ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["recipe_id", 2], ["created_at", "2022-06-01 16:02:26.403069"], ["updated_at", "2022-06-01 16:02:26.403069"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/me" for 127.0.0.1 at 2022-06-01 09:03:26 -0700
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:03:26 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#index as */*
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 36ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocations: 25226)
+
+
+  [1m[36mRecipe Load (0.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 89ms (Views: 31.3ms | ActiveRecord: 28.2ms | Allocations: 34222)
+
+

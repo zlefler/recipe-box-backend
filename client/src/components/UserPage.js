@@ -15,15 +15,12 @@ function UserPage({ user, userpage }) {
   }, [user.id]);
 
   function onNewRecipe(new_recipe) {
-    console.log(`before: ${userRecipes}`);
     setUserRecipes([...userRecipes, new_recipe]);
-    console.log(`after: ${userRecipes}`);
   }
 
   function onShowFormClick() {
     setShowForm((showForm) => !showForm);
   }
-  console.log(user);
   return (
     <div>
       <Title>{user.username}'s page</Title>
@@ -31,7 +28,7 @@ function UserPage({ user, userpage }) {
         {showForm ? 'Hide Form' : 'Add Recipe'}
       </Button>
       {showForm && <NewRecipeForm onNewRecipe={onNewRecipe} user={user} />}
-      <RecipeList user={user} recipes={userRecipes} userpage={userpage} />
+      <RecipeList user={user} userRecipes={userRecipes} userpage={userpage} />
     </div>
   );
 }
