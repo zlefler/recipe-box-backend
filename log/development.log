@@ -25886,3 +25886,454 @@ Completed 401 Unauthorized in 36ms (Views: 0.3ms | ActiveRecord: 2.2ms | Allocat
 Completed 200 OK in 89ms (Views: 31.3ms | ActiveRecord: 28.2ms | Allocations: 34222)
 
 
+Started POST "/signup" for 127.0.0.1 at 2022-06-01 09:33:22 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"someGuy", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"someGuy"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fd15c864248>, params: {"username"=>"someGuy", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"someGuy"}} }[0m
+Completed 422 Unprocessable Entity in 305ms (Views: 0.2ms | ActiveRecord: 55.8ms | Allocations: 5653)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:33:40 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 1.7ms | Allocations: 1231)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-06-01 09:33:47 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"someGuy", "password"=>"[FILTERED]", "session"=>{"username"=>"someGuy", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "someGuy"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 401 Unauthorized in 6ms (Views: 0.4ms | ActiveRecord: 1.4ms | Allocations: 678)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-01 09:34:04 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>""}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fd15867c420>, params: {"username"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>""}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", ""], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 16:34:04.800134"], ["updated_at", "2022-06-01 16:34:04.800134"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (8.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Completed 201 Created in 309ms (Views: 0.4ms | ActiveRecord: 9.8ms | Allocations: 2157)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-01 09:36:56 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"someGuy", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"someGuy"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fd15bb4bc50>, params: {"username"=>"someGuy", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"someGuy"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "someGuy"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "someGuy"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-01 16:36:57.045456"], ["updated_at", "2022-06-01 16:36:57.045456"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "someGuy"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 201 Created in 305ms (Views: 0.3ms | ActiveRecord: 19.7ms | Allocations: 4521)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:36:58 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 36ms (Views: 9.8ms | ActiveRecord: 10.6ms | Allocations: 5722)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-06-01 09:37:02 -0700
+Processing by SessionsController#create as */*
+  Parameters: {"username"=>"someGuy", "password"=>"[FILTERED]", "session"=>{"username"=>"someGuy", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "someGuy"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 201 Created in 287ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 887)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:37:03 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.6ms | Allocations: 1074)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 09:37:17 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>4, "recipe_id"=>1, "bookmark"=>{"user_id"=>4, "recipe_id"=>1}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd159721b90>, params: {"user_id"=>4, "recipe_id"=>1, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>1}} }[0m
+  [1m[36mBookmark Load (0.8ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 4], ["recipe_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd159721b90>, params: {"user_id"=>4, "recipe_id"=>1, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (0.6ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["recipe_id", 1], ["created_at", "2022-06-01 16:37:17.809296"], ["updated_at", "2022-06-01 16:37:17.809296"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (40.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 77ms (Views: 0.4ms | ActiveRecord: 45.3ms | Allocations: 9975)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 09:37:20 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>4, "recipe_id"=>1, "bookmark"=>{"user_id"=>4, "recipe_id"=>1}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd15c233c70>, params: {"user_id"=>4, "recipe_id"=>1, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>1}} }[0m
+  [1m[36mBookmark Load (0.3ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 4], ["recipe_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 849)
+
+
+Started GET "/users/4/recipes" for 127.0.0.1 at 2022-06-01 09:37:27 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (1.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 57ms (Views: 12.5ms | ActiveRecord: 2.2ms | Allocations: 6597)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2022-06-01 09:37:46 -0700
+Processing by RecipesController#create as */*
+  Parameters: {"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>4, "recipe"=>{"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>4}}
+[31mUnpermitted parameter: :recipe. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x00007fd15e957a68>, params: {"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>4, "controller"=>"recipes", "action"=>"create", "recipe"=>{"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"25", "vegetarian"=>true, "user_id"=>4}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "instructions", "time_to_make", "vegetarian", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "mac and cheese"], ["instructions", "take some mac, add some cheese"], ["time_to_make", 25], ["vegetarian", true], ["user_id", 4], ["created_at", "2022-06-01 16:37:46.357275"], ["updated_at", "2022-06-01 16:37:46.357275"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (39.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mBookmark Create (0.3ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["recipe_id", 5], ["created_at", "2022-06-01 16:37:46.405340"], ["updated_at", "2022-06-01 16:37:46.405340"]]
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:22:in `create'
+Completed 201 Created in 61ms (Views: 0.3ms | ActiveRecord: 43.5ms | Allocations: 6610)
+
+
+Started PATCH "/recipes/5" for 127.0.0.1 at 2022-06-01 09:37:59 -0700
+Processing by RecipesController#update as */*
+  Parameters: {"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"20", "vegetarian"=>true, "id"=>"5", "recipe"=>{"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"20", "vegetarian"=>true}}
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:30:in `update'
+[31mUnpermitted parameters: :id, :recipe. Context: { controller: RecipesController, action: update, request: #<ActionDispatch::Request:0x00007fd15c6b33b8>, params: {"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"20", "vegetarian"=>true, "controller"=>"recipes", "action"=>"update", "id"=>"5", "recipe"=>{"name"=>"mac and cheese", "instructions"=>"take some mac, add some cheese", "time_to_make"=>"20", "vegetarian"=>true}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:31:in `update'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:31:in `update'
+  [1m[36mRecipe Update (0.4ms)[0m  [1m[33mUPDATE "recipes" SET "time_to_make" = $1, "updated_at" = $2 WHERE "recipes"."id" = $3[0m  [["time_to_make", 20], ["updated_at", "2022-06-01 16:37:59.736160"], ["id", 5]]
+  ↳ app/controllers/recipes_controller.rb:31:in `update'
+  [1m[36mTRANSACTION (39.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:31:in `update'
+Completed 202 Accepted in 55ms (Views: 0.5ms | ActiveRecord: 41.2ms | Allocations: 3613)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:38:23 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (1.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 1.1ms | Allocations: 1176)
+
+
+Started GET "/users/4/recipes" for 127.0.0.1 at 2022-06-01 09:38:36 -0700
+Processing by RecipesController#index as */*
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:7:in `index'
+  [1m[36mRecipe Load (2.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "bookmarks" ON "recipes"."id" = "bookmarks"."recipe_id" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:8:in `index'
+Completed 200 OK in 15ms (Views: 6.7ms | ActiveRecord: 5.7ms | Allocations: 1609)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-01 09:39:07 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.4ms | Allocations: 1176)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "bookmarks" DESC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "bookmarks" ON "bookmarks"."user_id" = "users"."id" GROUP BY "user_id" ORDER BY COUNT(bookmarks.id) desc[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "bookmarks" ON "bookmarks"."user_id" = "users"."id" GROUP BY "users"."id" ORDER BY COUNT(bookmarks.id) desc[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 3]]
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 2]]
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 10:27:50 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>4, "recipe_id"=>2, "bookmark"=>{"user_id"=>4, "recipe_id"=>2}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd15bba1a10>, params: {"user_id"=>4, "recipe_id"=>2, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>2}} }[0m
+  [1m[36mBookmark Load (0.7ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 4], ["recipe_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd15bba1a10>, params: {"user_id"=>4, "recipe_id"=>2, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (1.1ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["recipe_id", 2], ["created_at", "2022-06-01 17:27:50.279550"], ["updated_at", "2022-06-01 17:27:50.279550"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 44ms (Views: 0.3ms | ActiveRecord: 19.7ms | Allocations: 13754)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 10:27:50 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>4, "recipe_id"=>3, "bookmark"=>{"user_id"=>4, "recipe_id"=>3}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd16021b270>, params: {"user_id"=>4, "recipe_id"=>3, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>3}} }[0m
+  [1m[36mBookmark Load (0.6ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 4], ["recipe_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd16021b270>, params: {"user_id"=>4, "recipe_id"=>3, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (0.6ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["recipe_id", 3], ["created_at", "2022-06-01 17:27:50.814755"], ["updated_at", "2022-06-01 17:27:50.814755"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 16ms (Views: 0.4ms | ActiveRecord: 2.5ms | Allocations: 4185)
+
+
+Started POST "/bookmarks" for 127.0.0.1 at 2022-06-01 10:27:52 -0700
+Processing by BookmarksController#create as */*
+  Parameters: {"user_id"=>4, "recipe_id"=>4, "bookmark"=>{"user_id"=>4, "recipe_id"=>4}}
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd1601f3810>, params: {"user_id"=>4, "recipe_id"=>4, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>4}} }[0m
+  [1m[36mBookmark Load (0.3ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1 AND "bookmarks"."recipe_id" = $2 LIMIT $3[0m  [["user_id", 4], ["recipe_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:5:in `create'
+[31mUnpermitted parameter: :bookmark. Context: { controller: BookmarksController, action: create, request: #<ActionDispatch::Request:0x00007fd1601f3810>, params: {"user_id"=>4, "recipe_id"=>4, "controller"=>"bookmarks", "action"=>"create", "bookmark"=>{"user_id"=>4, "recipe_id"=>4}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mBookmark Create (0.9ms)[0m  [1m[32mINSERT INTO "bookmarks" ("user_id", "recipe_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 4], ["recipe_id", 4], ["created_at", "2022-06-01 17:27:52.448514"], ["updated_at", "2022-06-01 17:27:52.448514"]]
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/bookmarks_controller.rb:8:in `create'
+Completed 201 Created in 22ms (Views: 0.3ms | ActiveRecord: 8.3ms | Allocations: 4185)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 3]]
+  [1m[36mBookmark Load (0.2ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."user_id" = $1[0m  [["user_id", 4]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "bookmarks" ON "bookmarks"."user_id" = "users"."id" GROUP BY "users"."id" ORDER BY COUNT(bookmarks.id) desc[0m
+Started GET "/me" for 127.0.0.1 at 2022-06-07 13:18:59 -0700
+Started GET "/recipes" for 127.0.0.1 at 2022-06-07 13:18:59 -0700
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (29.8ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 200 OK in 122ms (Views: 1.3ms | ActiveRecord: 46.5ms | Allocations: 32335)
+
+
+Completed 200 OK in 158ms (Views: 12.5ms | ActiveRecord: 120.1ms | Allocations: 37023)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-07 13:19:00 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.5ms | Allocations: 1195)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2022-06-07 13:19:03 -0700
+Processing by SessionsController#destroy as */*
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 182)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2022-06-07 13:19:03 -0700
+Processing by RecipesController#index as */*
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.5ms | Allocations: 1195)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-07 13:22:50 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 8ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 828)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:22:59 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc292867958>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (40.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 315ms (Views: 0.2ms | ActiveRecord: 44.2ms | Allocations: 5677)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:24:05 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc2904ebab0>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 235ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3312)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-07 13:26:44 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 21ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 829)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-07 13:27:27 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 814)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:27:30 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc291366400>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 246ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 3313)
+
+
+Started GET "/me" for 127.0.0.1 at 2022-06-07 13:29:25 -0700
+Processing by UsersController#show as */*
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+Completed 401 Unauthorized in 11ms (Views: 0.2ms | ActiveRecord: 2.2ms | Allocations: 797)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:29:28 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc2920296b0>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 243ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 3313)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:29:48 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc291c7a028>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 234ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 3313)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:30:20 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc29059c860>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 240ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 3312)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:30:52 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc2904e1948>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 234ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 3310)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:31:37 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc2903eab48>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 239ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3310)
+
+
+Started POST "/signup" for 127.0.0.1 at 2022-06-07 13:31:42 -0700
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"username"=>"asdf"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fc28d7f97f0>, params: {"username"=>"asdf", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"username"=>"asdf"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "asdf"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (7.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "asdf"], ["password_digest", "[FILTERED]"], ["created_at", "2022-06-07 20:31:43.161915"], ["updated_at", "2022-06-07 20:31:43.161915"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "asdf"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 201 Created in 255ms (Views: 0.3ms | ActiveRecord: 9.8ms | Allocations: 3508)
+
+

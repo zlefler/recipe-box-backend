@@ -1,7 +1,6 @@
 class BookmarksController < ApplicationController
 
     def create
-        # TO DO: make sure you can't create duplicate recipes associations
         if Bookmark.find_by(bookmark_params)
             render json: {error: 'Recipe already bookmarked'}, status: :unprocessable_entity
         else
@@ -10,7 +9,6 @@ class BookmarksController < ApplicationController
     end
 
     def show
-        byebug
         user = User.find(params[:user_id])
         user.bookmarks.find(params[:id])
     end
@@ -33,7 +31,7 @@ class BookmarksController < ApplicationController
         user = User.find(params[:user_id])
         bookmark = user.bookmarks.find_by(recipe_id: params[:id])
         bookmark.destroy
-    end
+    end        
 
 
     private

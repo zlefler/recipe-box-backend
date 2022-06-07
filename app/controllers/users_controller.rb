@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def most_bookmarks
+    bookmarks = Bookmark.all
+end
+
   private
 
   def user_params
