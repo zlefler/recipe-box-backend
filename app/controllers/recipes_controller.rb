@@ -17,13 +17,9 @@ skip_before_action :authorize, only: [:index, :show]
 
     def create
         recipe = Recipe.create(recipe_params)
-        if recipe.valid?
             user_id = session[:user_id]
             Bookmark.create(recipe_id: recipe[:id], user_id: user_id)
             render json: recipe, status: :created
-        else
-            render json: {errors: recipe.errors.full_messages}, status: :unprocessable_entity
-        end
     end
 
     def update
@@ -34,17 +30,11 @@ skip_before_action :authorize, only: [:index, :show]
 
     def destroy
         user = User.find(session[:user_id])
-        if user.id == 1
-            recipe = Recipe.find(params[:id])
-            recipe.destroy
-        else
-            user_recipe = user.bookmarks.find_by(recipe_id: params[:id])
-            render json: user_recipe.destroy
-        end
+        user_recipe = user.bookmarks.find_by(recipe_id: params[:id])
+        render json: user_recipe.destroy
     end
 
     def favorites
-        byebug
         render json: Recipe.first
     end
 
