@@ -1,6 +1,6 @@
 ## Recipe Box
 
-Recipe box is a small web app that allows you to create recipes, and save other people's recipes that also use the app.
+Recipe box is a small web app that allows you to create recipes, and save other people's recipes that also use the app. [Short walkthrough here.](https://youtu.be/v6Ow_3k0_sE)
 
 ## Installation
 
